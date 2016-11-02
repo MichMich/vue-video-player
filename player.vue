@@ -153,8 +153,8 @@
             if (!!options.source.length) {
               this.updateSrc(options.source)
               this.on('resolutionchange', function(){
-                _this.$emit && _this.$emit('playerStateChanged', { resolutionchange: this.src() })
-                _this.$dispatch && _this.$dispatch('playerStateChanged', { resolutionchange: this.src() })
+                _this.$emit && _this.$emit('state', { resolutionchange: this.src() })
+                _this.$dispatch && _this.$dispatch('state', { resolutionchange: this.src() })
               })
             }
           }
@@ -176,34 +176,34 @@
 
           // 监听播放
           this.on('play', function() {
-            _this.$emit && _this.$emit('playerStateChanged', { play: true })
-            _this.$dispatch && _this.$dispatch('playerStateChanged', { play: true })
+            _this.$emit && _this.$emit('state', { play: true })
+            _this.$dispatch && _this.$dispatch('state', { play: true })
           })
 
           // 监听暂停
           this.on('pause', function() {
-            _this.$emit && _this.$emit('playerStateChanged', { pause: true })
-            _this.$dispatch && _this.$dispatch('playerStateChanged', { pause: true })
+            _this.$emit && _this.$emit('state', { pause: true })
+            _this.$dispatch && _this.$dispatch('state', { pause: true })
           })
 
           // 监听结束
           this.on('ended', function() { 
-            _this.$emit && _this.$emit('playerStateChanged', { ended: true })
-            _this.$dispatch && _this.$dispatch('playerStateChanged', { ended: true })
+            _this.$emit && _this.$emit('state', { ended: true })
+            _this.$dispatch && _this.$dispatch('state', { ended: true })
           })
 
           // 元文件信息
           this.on('loadeddata', function() {
             if (!options.live && !!options.start) this.currentTime(options.start)
             this.muted(_this.options.muted)
-            _this.$emit && _this.$emit('playerStateChanged', { loadeddata: true })
-            _this.$dispatch && _this.$dispatch('playerStateChanged', { loadeddata: true })
+            _this.$emit && _this.$emit('state', { loadeddata: true })
+            _this.$dispatch && _this.$dispatch('state', { loadeddata: true })
           })
 
           // 监听时间
           this.on('timeupdate', function() {
-            _this.$emit && _this.$emit('playerStateChanged', { currentTime: this.currentTime() })
-            _this.$dispatch && _this.$dispatch('playerStateChanged', { currentTime: this.currentTime() })
+            _this.$emit && _this.$emit('state', { currentTime: this.currentTime() })
+            _this.$dispatch && _this.$dispatch('state', { currentTime: this.currentTime() })
           })
         })
       },
